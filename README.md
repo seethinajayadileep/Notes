@@ -1,6 +1,6 @@
 # Notes
 
-Single place for study notes and small practice scripts. Java/DSA, Kotlin, k6, Nginx, Spring Boot, Git, and Azure DevOps all live here.
+Single place for study notes and practice work. Java/DSA, Kotlin, k6, Nginx, Spring Boot, Git, Azure DevOps, Redis, Playwright, and LeetCode all live here.
 
 ## Index
 
@@ -32,3 +32,12 @@ Single place for study notes and small practice scripts. Java/DSA, Kotlin, k6, N
 - [Azure DevOps complete pipeline](./devops/azure_dev_ops_complete_pipeline_notes.md)
 - [YAML vs classic release pipelines](./devops/azure-devops-yaml-classic-release-pipeline-notes.md)
 - [App Service deployment](./devops/azure-devops-app-service-deployment-notes.md)
+
+### Redis (Node.js practice)
+- [redis-nodejs/](./redis-nodejs/) Express + Redis caching practice
+
+### Playwright
+- [playwright/](./playwright/) POM tests, fixtures, and basic UI practice
+
+### LeetCode
+- [leetcode/](./leetcode/) C++ solutions
