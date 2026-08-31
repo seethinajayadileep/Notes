@@ -1,0 +1,2 @@
+-- Write your PostgreSQL query statement below
+select today.id as Id from Weather today left join Weather yesterday  on today.recordDate=yesterday.recordDate + INTERVAL '1 day' where today.temperature>yesterday.temperature;
