@@ -1,0 +1,4 @@
+-- Write your PostgreSQL query statement below
+
+select name from employee join 
+(select managerId,count(*) from employee group by managerId having managerId is not null and count(*)>=5) as t  on employee.id=t.managerId;
