@@ -1,0 +1,6 @@
+-- Write your PostgreSQL query statement below
+select s.user_id,COALESCE(cr,0.00) as confirmation_rate from signups s left join 
+(select t.user_id,ROUND((d.count*1.0)/(t.count*1.0),2) as cr from 
+(select user_id,count(*) from  confirmations group by user_id )as t
+join (select user_id,count(*) from confirmations  where confirmations.action='confirmed' group by user_id  ) as d on t.user_id=d.user_id) as m on s.user_id=m.user_id;
+
