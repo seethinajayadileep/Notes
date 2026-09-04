@@ -1,0 +1,2 @@
+-- Write your PostgreSQL query statement below
+select ROUND(count(*)/(select count(distinct player_id) from activity)::numeric,2) as fraction from activity a1 join activity a2 on a1.player_id=a2.player_id and a1.event_date=a2.event_date-1
