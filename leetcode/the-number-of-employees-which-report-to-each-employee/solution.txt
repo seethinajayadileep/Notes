@@ -1,3 +1,3 @@
 -- Write your PostgreSQL query statement below
 select e.employee_id ,e.name,t.reports_count,t.average_age from employees e join 
-(select reports_to,count(reports_to ) as reports_count,round(avg(age)) as average_age from employees where reports_to is not null group by reports_to ) as t on e.employee_id=t.reports_to;
+(select reports_to,count(reports_to ) as reports_count,round(avg(age)) as average_age from employees where reports_to is not null group by reports_to ) as t on e.employee_id=t.reports_to order by e.employee_id;
