@@ -1,3 +1,3 @@
 -- Write your PostgreSQL query statement below
-select t.num as ConsecutiveNums from
+select distinct t.num as ConsecutiveNums from
 (select l2.id  as id,l2.num as num from logs l1 join  logs l2 on l1.id=l2.id+1 and l1.num=l2.num) as t  join logs l3 on l3.id+1=t.id and l3.num=t.num;
