@@ -1,0 +1,8 @@
+-- Write your PostgreSQL query statement below
+/*select * from products group by product_id having change_date<='2019-08-16' order by change_date desc limit 1;*/
+
+
+/*select * from products p1  join  products p2 on p1.product_id=p2.product_id and  p1.change_date=*/
+/*select * from products p1 where p1.change_date in (select change_date from products where product_id= p1.product_id and change_date<='2019-08-16' order by change_date desc limit 1);*/
+
+select p1.product_id,coalesce((select new_price from products where product_id=p1.product_id and change_date<='2019-08-16' order by change_date desc limit 1),10) as price from (select distinct product_id from products) p1 ;
