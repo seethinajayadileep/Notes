@@ -1,0 +1,4 @@
+-- Write your PostgreSQL query statement below
+select c.name as Customers from  Customers c where Not exists (
+    select 1 from Orders o where o.customerId=c.id
+)
