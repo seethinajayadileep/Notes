@@ -1,0 +1,9 @@
+CREATE OR REPLACE FUNCTION NthHighestSalary(N INT) RETURNS TABLE (Salary INT) AS $$
+BEGIN
+  RETURN QUERY (
+    -- Write your PostgreSQL query statement below.
+    SELECT (  select distinct e.salary from employee e order by e.salary desc limit 1 offset(Greatest(n-1,0)) )where n>0
+      
+  );
+END;
+$$ LANGUAGE plpgsql;
