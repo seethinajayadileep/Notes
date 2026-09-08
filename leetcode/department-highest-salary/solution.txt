@@ -1,0 +1,3 @@
+-- Write your PostgreSQL query statement below
+select (select name from department d where d.id=e.departmentid) as Department , e.name as employee ,e.salary as salary from employee e join 
+(select max(salary) as maxsalary,departmentid from employee group by departmentid) as t on e.salary=t.maxsalary and e.departmentid=t.departmentid;
