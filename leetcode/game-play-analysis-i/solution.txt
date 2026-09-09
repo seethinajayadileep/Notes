@@ -1,0 +1,2 @@
+-- Write your PostgreSQL query statement below
+select player_id ,(select min(event_date) from activity a1 where a1.player_id =a.player_id) as first_login from activity a group by player_id;
