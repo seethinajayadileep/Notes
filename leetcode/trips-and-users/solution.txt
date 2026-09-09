@@ -1,0 +1,2 @@
+-- Write your PostgreSQL query statement below
+select request_at as "Day" ,Round(sum(case when ((t.status='cancelled_by_driver'or t.status='cancelled_by_client') ) then 1.0 else 0.0 end)/ sum(1.0),2) as "Cancellation Rate"  from trips t where  request_at BETWEEN '2013-10-01' AND '2013-10-03' and  not exists (select 1 from users u where banned='Yes' and u.role='driver' and u.users_id=t.driver_id ) and not exists (select users_id from users  u where banned='Yes' and u.role='client' and u.users_id=t.client_id) group by request_at order by request_at ;
