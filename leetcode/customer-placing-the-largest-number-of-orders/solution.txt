@@ -1,0 +1,2 @@
+-- Write your PostgreSQL query statement below
+select customer_number from orders group by customer_number having count(*)=(select max(t.total) from (select count(*) as total from orders group by customer_number) as t )  ;
