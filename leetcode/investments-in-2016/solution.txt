@@ -1,0 +1,7 @@
+-- Write your PostgreSQL query statement below
+select sum(tiv_2016) as tiv_2016  from insurance where pid in(
+select i1.pid from Insurance i1 join Insurance i2 on (i1.tiv_2015=i2.tiv_2015 and i1.pid!=i2.pid) ) 
+and pid in (
+select pid from insurance where (lon,lat) in (
+    select lon,lat from insurance  group by lon,lat having count(*)=1
+))
