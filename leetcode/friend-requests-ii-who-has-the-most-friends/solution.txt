@@ -1,0 +1,6 @@
+-- Write your PostgreSQL query statement below
+
+select id,sum(cnt)  as num from (
+(select count(*) as cnt,requester_id as id from RequestAccepted group by requester_id 
+union all
+select count(*) as cnt ,accepter_id as id from RequestAccepted group by accepter_id)) group by id order by  num desc limit 1;
