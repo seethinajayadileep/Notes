@@ -1,2 +1,2 @@
 -- Write your PostgreSQL query statement below
-select employee_id from employees e where  e.salary<30000 and not exists (select 1 from employees e1  where e1.employee_id=e.manager_id);
+select employee_id from employees e where  e.salary<30000 and (not exists (select 1 from employees e1  where e1.employee_id=e.manager_id) or e.manager_id is null) ;
