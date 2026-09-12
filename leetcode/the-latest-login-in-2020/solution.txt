@@ -1,0 +1,2 @@
+-- Write your PostgreSQL query statement below
+select  user_id ,(select distinct  time_stamp from  logins  l where  l.user_id=k.user_id and extract (year from time_stamp)=2020 order by time_stamp desc limit 1) as last_stamp from logins  k where extract (year from time_stamp)=2020 group by user_id;
