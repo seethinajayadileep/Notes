@@ -1,0 +1,2 @@
+-- Write your PostgreSQL query statement below
+select sum(t.amount) as balance ,(select name from users u where u.account=t.account )  from Transactions as t group by account having sum(amount)>10000 ;
