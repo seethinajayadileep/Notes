@@ -1,0 +1,12 @@
+-- Write your PostgreSQL query statement below
+(select name as results from users where user_id in (
+select user_id from movierating group by user_id having count(*)=(
+select max(count) from (
+select user_id,count(*) as count from movierating group by user_id))) order by name limit 1 )
+union all
+(select title as results from movies where movie_id in (
+select movie_id from movierating where EXTRACT(month from created_at)=2 and EXTRACT(year from created_at)=2020 group by movie_id having avg(rating)=(
+
+select max(aver) from (
+select avg(rating) as aver ,movie_id from movierating where EXTRACT(month from created_at)=2 and EXTRACT(year from created_at)=2020  group by movie_id
+))) order by title limit 1)
