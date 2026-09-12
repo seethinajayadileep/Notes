@@ -1,0 +1,7 @@
+-- Write your PostgreSQL query statement below
+select * from (
+select (case when id%2=1 and id not in (select max(id) from seat) then id+1 
+when id%2=0 then id-1 
+else id
+end
+),student from seat) order by id;
