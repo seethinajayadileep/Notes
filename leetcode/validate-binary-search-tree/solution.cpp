@@ -15,7 +15,7 @@ public:
         if(!root){
             return true;
         }
-        if(root->val<mini || root->val>maxi){
+        if(root->val<=mini || root->val>=maxi){
             return false;
         }
         bool left=fun(root->left,mini,root->val);
