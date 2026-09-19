@@ -1,51 +1,54 @@
 class Solution {
 public:
-void dfs(vector<vector<bool>> &visited,vector<vector<char>> &board,int row,int col){
-    visited[row][col]=true;
+   void dfs(vector<vector<char>> &board,vector<vector<bool>> &visited,int i,int j){
+    visited[i][j]=true;
     int rows[]={0,0,-1,1};
     int cols[]={-1,1,0,0};
-    for(int i=0;i<4;i++){
-        int newrow=rows[i]+row;
-        int newcol=cols[i]+col;
-        if(newrow>=0&&newcol>=0&&newrow<board.size()&&newcol<board[0].size()&&board[newrow][newcol]=='O'&&!visited[newrow][newcol]){
-            dfs(visited,board,newrow,newcol);
+    for(int k=0;k<4;k++){
+        int row=rows[k]+i;
+        int col=cols[k]+j;
+        if(row>=0&&col>=0&&row<board.size()&&col<board[0].size()&&!visited[row][col]&&board[row][col]=='O'){
+            dfs(board,visited,row,col);
         }
     }
-}
+   }
     void solve(vector<vector<char>>& board) {
-        int n=board.size();
-        int m=board[0].size();
-        vector<vector<bool>> visited(n,vector<bool>(m,false));
-        for(int i=0;i<n;i++){
+        
+        vector<vector<bool>> visited(board.size(),vector<bool>(board[0].size(),false));
+
+        for(int i=0;i<board.size();i++){
             for(int j=0;j<1;j++){
-                if(!visited[i][j]&&board[i][j]=='O'){
-                dfs(visited,board,i,j);
+                if(board[i][j]=='O'){
+                    dfs(board,visited,i,j);
                 }
             }
         }
-        for(int i=0;i<n;i++){
-            for(int j=m-1;j<m;j++){
-                if(!visited[i][j]&&board[i][j]=='O'){
-                dfs(visited,board,i,j);
+
+        for(int i=0;i<board.size();i++){
+            for(int j=board[0].size()-1;j<board[0].size();j++){
+                if(board[i][j]=='O'){
+                    dfs(board,visited,i,j);
                 }
             }
         }
-        for(int i=0;i<1;i++){
-            for(int j=0;j<m;j++){
-                 if(!visited[i][j]&&board[i][j]=='O'){
-                dfs(visited,board,i,j);
+
+         for(int i=0;i<1;i++){
+            for(int j=0;j<board[0].size();j++){
+                if(board[i][j]=='O'){
+                    dfs(board,visited,i,j);
                 }
             }
         }
-         for(int i=n-1;i<n;i++){
-            for(int j=0;j<m;j++){
-                 if(!visited[i][j]&&board[i][j]=='O'){
-                dfs(visited,board,i,j);
+          for(int i=board.size()-1;i<board.size();i++){
+            for(int j=0;j<board[0].size();j++){
+                if(board[i][j]=='O'){
+                    dfs(board,visited,i,j);
                 }
             }
         }
-        for(int i=0;i<visited.size();i++){
-            for(int j=0;j<visited[0].size();j++){
+
+        for(int i=0;i<board.size();i++){
+            for(int j=0;j<board[0].size();j++){
                 if(visited[i][j]){
                     board[i][j]='O';
                 }
@@ -53,7 +56,8 @@ void dfs(vector<vector<bool>> &visited,vector<vector<char>> &board,int row,int c
                     board[i][j]='X';
                 }
             }
-        
         }
+        
+
     }
 };
