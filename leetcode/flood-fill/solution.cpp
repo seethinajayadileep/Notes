@@ -1,25 +1,25 @@
 class Solution {
 public:
-   void dfs(vector<vector<bool>> &visited,vector<vector<int>> &image,int sr,int sc,int color,int oldcolor){
-    visited[sr][sc]=true;
-    image[sr][sc]=color;
-    int row[]={0,0,-1,1};
-    int col[]={-1,1,0,0};
-    for(int i=0;i<4;i++){
-       int newrow=row[i]+sr;
-       int newcol=col[i]+sc;
-       if(newrow>=0&&newcol>=0&&newrow<image.size()&&newcol<image[0].size()&&!visited[newrow][newcol]&&image[newrow][newcol]==oldcolor){
-        dfs(visited,image,newrow,newcol,color,oldcolor);
-       }
+   void dfs(vector<vector<int>> &image,int i,int j,int color,int oldcolor,vector<vector<bool>> &visited){
+    visited[i][j]=true;
+    image[i][j]=color;
+    int newrow[]={-1,1,0,0};
+    int newcol[]={0,0,-1,1};
+    for(int k=0;k<4;k++){
+        int rows=i+newrow[k];
+        int cols=j+newcol[k];
+        if(rows>=0&&rows<image.size()&&cols>=0&&cols<image[0].size()&&!visited[rows][cols]&&image[rows][cols]==oldcolor){
+            dfs(image,rows,cols,color,oldcolor,visited);
+        }
     }
-
    }
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        int oldcolor=image[sr][sc];
         vector<vector<bool>> visited(image.size(),vector<bool>(image[0].size(),false));
-     
-               int oldcolor=image[sr][sc];
-               if(oldcolor!=color)
-                dfs(visited,image,sr,sc,color,oldcolor);
-          return image;
+        if(oldcolor!=color){
+            dfs(image,sr,sc,color,oldcolor,visited);
+        }
+        return image;
+
     }
 };
