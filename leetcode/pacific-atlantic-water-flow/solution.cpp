@@ -38,7 +38,7 @@ void dfs(vector<vector<int>> &heights,int i,int j,vector<vector<bool>> &visited)
         }
         vector<vector<int>> sol;
         for(int i=0;i<heights.size();i++){
-            for(int j=0;j<heights.size();j++){
+            for(int j=0;j<heights[0].size();j++){
                 if(pacific[i][j]&&altantic[i][j]){
                     sol.push_back({i,j});
                 }
