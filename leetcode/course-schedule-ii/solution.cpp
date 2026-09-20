@@ -6,38 +6,35 @@ public:
             int u=prerequisites[i][0];
             int v=prerequisites[i][1];
             adj[v].push_back(u);
-
         }
-         vector<int> indegree(numCourses,0);
-         for(int i=0;i<numCourses;i++){
-            for(auto node:adj[i]){
-                indegree[node]++;
+        vector<int> indegree(numCourses,0);
+        for(int i=0;i<numCourses;i++){
+            for(auto ele:adj[i]){
+                indegree[ele]++;
             }
-         }
-         queue<int> q;
-
-         for(int i=0;i<numCourses;i++){
+        }
+        queue<int> q;
+        for(int i=0;i<indegree.size();i++){
             if(indegree[i]==0){
                 q.push(i);
+
             }
-         }
-         vector<int> topo;
-         while(!q.empty()){
-            int front=q.front();
-            topo.push_back(front);
+        }
+        vector<int> topo;
+        while(!q.empty()){
+            int node=q.front();
             q.pop();
-            for(auto node:adj[front]){
-                indegree[node]--;
-                if(indegree[node]==0){
-                    q.push(node);
+            topo.push_back(node);
+            for(auto ele:adj[node]){
+                indegree[ele]--;
+                if(indegree[ele]==0){
+                    q.push(ele);
                 }
-                
             }
-         }
-         if(topo.size()<numCourses){
+        }
+        if(topo.size()<numCourses){
             return {};
-         }
-         return topo;
-        
+        }
+        return topo;
     }
 };
